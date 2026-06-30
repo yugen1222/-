@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Safia Schedule</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="loginScreen" class="login-screen">
+    <div class="login-card">
+      <div class="logo">S</div>
+      <h1>Safia Schedule</h1>
+      <p>Система графика сотрудников</p>
+      <label>Роль</label>
+      <select id="roleSelect">
+        <option value="admin">Админ — Аббос ака / Мадина</option>
+        <option value="manager">Менеджер</option>
+      </select>
+      <label>Категория менеджера</label>
+      <select id="managerCategorySelect">
+        <option value="Продавцы">Продавцы</option>
+        <option value="Официанты">Официанты</option>
+        <option value="Бариста">Бариста</option>
+        <option value="Кассиры">Кассиры</option>
+        <option value="Технички">Технички</option>
+        <option value="Морозильщики">Морозильщики</option>
+        <option value="Менеджеры">Менеджеры</option>
+      </select>
+      <button onclick="login()">Войти</button>
+    </div>
+  </div>
+
+  <div id="app" class="app hidden">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="logo small">S</div>
+        <div>
+          <b>Safia Schedule</b>
+          <span id="roleBadge">Админ</span>
+        </div>
+      </div>
+      <button class="nav active" onclick="openPage('home', this)">🏠 Главная</button>
+      <button class="nav" onclick="openPage('schedule', this)">📅 График</button>
+      <button class="nav" onclick="openPage('dayoff', this)">📆 Выходные</button>
+      <button class="nav admin-only" onclick="openPage('employees', this)">👥 Сотрудники</button>
+      <button class="nav admin-only" onclick="openPage('skills', this)">⭐ Навыки</button>
+      <button class="nav admin-only" onclick="openPage('staffing', this)">📊 Штатка</button>
+      <button class="nav" onclick="openPage('history', this)">📜 История</button>
+      <button class="nav danger" onclick="resetAll()">♻ Сброс</button>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <h2 id="pageTitle">Главная</h2>
+          <p id="weekLabel">Неделя</p>
+        </div>
+        <div class="top-actions">
+          <select id="categorySelect" onchange="changeCategory()"></select>
+          <button onclick="createNextWeek()">Следующая неделя</button>
+          <button onclick="saveSnapshot()">Сохранить историю</button>
+          <button onclick="exportExcel()">Скачать Excel</button>
+          <button onclick="logout()" class="ghost">Выйти</button>
+        </div>
+      </header>
+
+      <section id="home" class="page"></section>
+      <section id="schedule" class="page hidden"></section>
+      <section id="dayoff" class="page hidden"></section>
+      <section id="employees" class="page hidden"></section>
+      <section id="skills" class="page hidden"></section>
+      <section id="staffing" class="page hidden"></section>
+      <section id="history" class="page hidden"></section>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
